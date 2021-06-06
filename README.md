@@ -3,6 +3,7 @@
 `neat-hooks` is a lightweight package that contains a few hooks that I find very useful to have in my projects. Some of these will be useful throughout your whole project, others are more niche.
 
 - [neat-hooks](#neat-hooks)
+  - [Installation](#installation)
     - [State Hooks](#state-hooks)
       - [useStateArray](#usestatearray)
       - [useStateWithDelay](#usestatewithdelay)
@@ -11,6 +12,20 @@
       - [useBoundingClientRect](#useboundingclientrect)
       - [useScroll](#usescroll)
       - [useSyncScroll](#usesyncscroll)
+
+## Installation
+
+With `yarn`
+
+```
+yarn add neat-hooks
+```
+
+or `npm`
+
+```
+npm i neat-hooks
+```
 
 ### State Hooks
 
