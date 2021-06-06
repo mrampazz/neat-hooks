@@ -1,7 +1,11 @@
-# useBoundingClientRect
+### `function useBoundingClientRect() : [boundingClientRect: Object, ref: React.MutableRefObject]`
 
-## Signature
+#### Usage
 
-```
-useBoundingClientRect() : [boundingClientRect, ref]
+```js
+function App() {
+  const [boundingClientRect, ref] = useBoundingClientRect()
+
+  return <div ref={ref}></div>
+}
 ```

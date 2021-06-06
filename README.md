@@ -57,7 +57,7 @@ Available handlers:
 Custom hook that treats state as a [key, value] map
 
 ```js
-function useDictionary() => [lastEntry: Any?, dictionary: Object<[Key, Value]>, handlers: Object<Function>]
+function useDictionary() : [lastEntry: Any?, dictionary: Object<[Key, Value]>, handlers: Object<Function>]
 ```
 
 Available handlers:
