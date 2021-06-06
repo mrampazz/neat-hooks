@@ -4,14 +4,14 @@
 
 - [neat-hooks](#neat-hooks)
   - [Installation](#installation)
-    - [State Hooks](#state-hooks)
-      - [useStateArray](#usestatearray)
-      - [useStateWithDelay](#usestatewithdelay)
-      - [useDictionary](#usedictionary)
-    - [User Interface Hooks](#user-interface-hooks)
-      - [useBoundingClientRect](#useboundingclientrect)
-      - [useScroll](#usescroll)
-      - [useSyncScroll](#usesyncscroll)
+  - [State Hooks](#state-hooks)
+    - [useStateArray](#usestatearray)
+    - [useStateWithDelay](#usestatewithdelay)
+    - [useDictionary](#usedictionary)
+  - [User Interface Hooks](#user-interface-hooks)
+    - [useBoundingClientRect](#useboundingclientrect)
+    - [useScroll](#usescroll)
+    - [useSyncScroll](#usesyncscroll)
 
 ## Installation
 
@@ -27,11 +27,11 @@ or `npm`
 npm i neat-hooks
 ```
 
-### State Hooks
+## State Hooks
 
 These hooks are inherent to the state of your component / application. They provide a friendly interface to handle complex state management while keeping their usage simple and clear.
 
-#### useStateArray
+### useStateArray
 
 This simple hook provides an interface to handle the state as an array.
 
@@ -54,7 +54,7 @@ Available handlers:
 - `getFirst() => Any`
   - _returns first `item`_
 
-#### useStateWithDelay
+### useStateWithDelay
 
 Custom hook that changes the setState function by adding an optional delay
 
@@ -67,7 +67,7 @@ Available handlers:
 - `setState(value: Any?, delay: Number = 0) => Void`
   - _sets a new state value with an added delay in ms_
 
-#### useDictionary
+### useDictionary
 
 Custom hook that treats state as a [key, value] map
 
@@ -88,11 +88,11 @@ Available handlers:
 - `updateCurrent(key: String) => Void`
   - _updates current pointer to `item` with given `key`_
 
-### User Interface Hooks
+## User Interface Hooks
 
 Set of hooks to aid in user interface related problems and possible hiccups.
 
-#### useBoundingClientRect
+### useBoundingClientRect
 
 Hook that returns the value of `getBoundingClientRect` on the element that has the ref returned by this function
 
@@ -100,7 +100,7 @@ Hook that returns the value of `getBoundingClientRect` on the element that has t
 function useBoundingClientRect() : [boundingClientRect: Object, ref: React.MutableRefObject]
 ```
 
-#### useScroll
+### useScroll
 
 Hook that returns values for scrollLeft and scrollTop of the element with given ref
 
@@ -108,7 +108,7 @@ Hook that returns values for scrollLeft and scrollTop of the element with given 
 function useScroll(ref: React.MutableRefObject) : Object<x: Number, y: Number>
 ```
 
-#### useSyncScroll
+### useSyncScroll
 
 Hook that syncs scroll between container and target, uses `useScroll`, returns ref to target element
 
