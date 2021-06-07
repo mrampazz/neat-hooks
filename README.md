@@ -58,7 +58,7 @@ Available handlers:
 - `first() => Any`
   - _returns first `item`_
 
-[Go to code](src/hooks/useStateArray)
+[Go to code](src/useStateArray)
 
 ### useStateWithDelay
 
@@ -73,7 +73,7 @@ Available handlers:
 - `setState(value: Any?, delay: Number = 0) => Void`
   - _sets a new state value with an added delay in ms_
 
-[Go to code](src/hooks/useStateWithDelay)
+[Go to code](src/useStateWithDelay)
 
 ### useDictionary
 
@@ -102,7 +102,7 @@ Available handlers:
 - `values() => Array<Any>`
   - _returns the values of the dictionary_
 
-[Go to code](src/hooks/useDictionary)
+[Go to code](src/useDictionary)
 
 ### useVersionedState
 
@@ -125,7 +125,7 @@ Available handlers:
 - `getHashList() => Array<String>`
   - _returns list of all hash codes_
 
-[Go to code](src/hooks/useVersionedState)
+[Go to code](src/useVersionedState)
 
 ## User Interface Hooks
 
@@ -139,7 +139,7 @@ Hook that returns the value of `getBoundingClientRect` on the element that has t
 function useBoundingClientRect() : [boundingClientRect: Object, ref: React.MutableRefObject]
 ```
 
-[Go to code](src/hooks/useBoundingClientRect)
+[Go to code](src/useBoundingClientRect)
 
 ### useScroll
 
@@ -149,7 +149,7 @@ Hook that returns values for scrollLeft and scrollTop of the element with given 
 function useScroll(ref: React.MutableRefObject) : Object<x: Number, y: Number>
 ```
 
-[Go to code](src/hooks/useScroll)
+[Go to code](src/useScroll)
 
 ### useSyncScroll
 
@@ -159,4 +159,4 @@ Hook that syncs scroll between container and target, uses `useScroll`, returns r
 function useSyncScroll(ref: React.MutableRefObject, axis: String = null) : React.MutableRefObject
 ```
 
-[Go to code](src/hooks/useSyncScroll)
+[Go to code](src/useSyncScroll)
