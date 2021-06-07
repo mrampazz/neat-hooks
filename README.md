@@ -59,6 +59,8 @@ Available handlers:
 - `first() => Any`
   - _returns first `item`_
 
+[Go to code](src/hooks/useStateArray)
+
 ### useStateWithDelay
 
 Custom hook that changes the setState function by adding an optional delay
@@ -79,7 +81,7 @@ Available handlers:
 Hook that treats state as a [key, value] map
 
 ```js
-function useDictionary() : [dictionary: Object<[Key, Value]>, handlers: Object<Function>]
+function useDictionary(initialState: Object = {}) : [dictionary: Object<[Key, Value]>, handlers: Object<Function>]
 ```
 
 Available handlers:
@@ -108,7 +110,7 @@ Available handlers:
 Hook that creates an history of all state changes saved by hash code
 
 ```js
-function useVersionedState() : [versionedState: Any, handlers: Object<Function>]
+function useVersionedState(initialState: Any) : [currentState: Any, setState: Funcion, handlers: Object<Function>]
 ```
 
 Available handlers:

@@ -70,5 +70,5 @@ export default function useStateArray(initialValue) {
 
   const first = useCallback(() => state[0], [state])
 
-  return [state, { push, pop, shift, unshift, replace, last, first, clear }]
+  return [state, { push, pop, shift, unshift, replace, clear, last, first }]
 }
