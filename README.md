@@ -8,6 +8,7 @@
     - [useStateArray](#usestatearray)
     - [useStateWithDelay](#usestatewithdelay)
     - [useDictionary](#usedictionary)
+    - [useVersionedState](#useversionedstate)
   - [User Interface Hooks](#user-interface-hooks)
     - [useBoundingClientRect](#useboundingclientrect)
     - [useScroll](#usescroll)
@@ -47,11 +48,15 @@ Available handlers:
   - _removes last `item` in state and returns it_
 - `shift() => Any`
   - _removes first `item` in state and returns it_
+- `unshift(value) => Any`
+  - _adds `item` at the start of the state_
 - `replace(array: Array<Any>?) => Void`
   - _replaces state with array_
-- `getLast() => Any`
+- `clear() => Void`
+  - _clears array_
+- `last() => Any`
   - _returns last `item`_
-- `getFirst() => Any`
+- `first() => Any`
   - _returns first `item`_
 
 ### useStateWithDelay
@@ -69,10 +74,10 @@ Available handlers:
 
 ### useDictionary
 
-Custom hook that treats state as a [key, value] map
+Hook that treats state as a [key, value] map
 
 ```js
-function useDictionary() : [lastEntry: Any?, dictionary: Object<[Key, Value]>, handlers: Object<Function>]
+function useDictionary() : [dictionary: Object<[Key, Value]>, handlers: Object<Function>]
 ```
 
 Available handlers:
@@ -89,6 +94,31 @@ Available handlers:
   - _returns `true` if key is in dictionary_
 - `size() => Number`
   - _returns the size of the dictionary_
+- `keys() => Array<String>`
+  - _returns the keys of the dictionary_
+- `values() => Array<Any>`
+  - _returns the values of the dictionary_
+
+### useVersionedState
+
+Hook that creates an history of all state changes saved by hash code
+
+```js
+function useVersionedState() : [versionedState: Any, handlers: Object<Function>]
+```
+
+Available handlers:
+
+- `setState(value: Any?) => Void`
+  - _sets a new state_
+- `getVersion(hash: String) => Object<hash: String, state: Any>`
+  - _returns the state saved with given hash code_
+- `getCurrent() => Object<hash: String, state: Any>`
+  - _returns current state_
+- `rollback(hash: String) => Void`
+  - _sets current state to state with given hash_
+- `getHashList() => Array<String>`
+  - _returns list of all hash codes_
 
 ## User Interface Hooks
 

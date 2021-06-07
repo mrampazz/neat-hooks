@@ -3,14 +3,20 @@ import useDictionary from '../useDictionary'
 import useStateArray from '../useStateArray'
 import hash from 'object-hash'
 
-export default function useVersionedState(initialValue) {
-  const [current, dictionary, { get, set, unset, updateCurrentPointer }] =
-    useDictionary()
+/**
+ *
+ * @param {} initialValue
+ * @returns
+ */
+
+export default function useVersionedState(initialState) {
+  const [versionedState, actions] = useDictionary()
   const [hashList, { push }] = useStateArray()
+  const [current, setCurrent] = useState()
 
   useEffect(() => {
-    if (initialValue) {
-      setState(initialValue)
+    if (initialState) {
+      setState(initialState)
     }
   }, [])
 
@@ -19,9 +25,10 @@ export default function useVersionedState(initialValue) {
       if (!hashList.includes(hash)) {
         push(hash)
       }
-      set(hash, value)
+      actions.set(hash, value)
+      setCurrent(hash)
     },
-    [push, set, hashList]
+    [push, actions, hashList]
   )
 
   const setState = useCallback(
@@ -29,14 +36,29 @@ export default function useVersionedState(initialValue) {
     [updateState]
   )
 
-  const getStateWithHash = useCallback((hash) => get(hash), [get])
+  const getVersion = useCallback(
+    (hash) => ({ hash: hash, state: actions.get(hash) }),
+    [actions]
+  )
 
   const rollback = useCallback(
     (hash) => {
-      updateCurrentPointer(hash)
+      setCurrent(actions.get(hash))
     },
-    [current]
+    [actions]
   )
 
-  return { current, hashList, setState, getStateWithHash, rollback }
+  const getCurrent = useCallback(
+    () => getVersion(current),
+    [current, getVersion]
+  )
+
+  const getHashList = useCallback(() => hashList, [hashList])
+
+  const handlers = useCallback(
+    () => ({ setState, getVersion, getCurrent, rollback, getHashList }),
+    [setState, getVersion, getCurrent, rollback, getHashList]
+  )
+
+  return [versionedState, handlers]
 }

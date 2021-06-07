@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import useStateArray from '../useStateArray/useStateArray'
+import { useCallback, useState } from 'react'
 
 /**
  * useDictionary
@@ -12,10 +11,14 @@ import useStateArray from '../useStateArray/useStateArray'
 export default function useDictionary() {
   const [dictionary, setDictionary] = useState({})
 
-  const has = useCallback(
-    (key) => Object.keys(dictionary).includes(key),
-    [dictionary]
+  const keys = useCallback(() => Object.keys(dictionary), [dictionary])
+
+  const values = useCallback(
+    () => keys().map((it) => dictionary[it]),
+    [dictionary, keys]
   )
+
+  const has = useCallback((key) => keys().includes(key), [keys])
 
   const get = useCallback(
     (key) => {
@@ -55,7 +58,12 @@ export default function useDictionary() {
     [dictionary]
   )
 
-  const size = useCallback(() => Object.keys(dictionary).length, [dictionary])
+  const size = useCallback(() => keys().length, [keys])
 
-  return [dictionary, { set, unset, update, get, has, size }]
+  const handlers = useCallback(
+    () => ({ set, unset, update, get, has, size, keys, values }),
+    [set, unset, update, get, has, size, keys, values]
+  )
+
+  return [dictionary, handlers]
 }

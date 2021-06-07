@@ -1,4 +1,11 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
+
+/**
+ * useStateArray
+ *
+ * @param {*} initialValue
+ * @returns
+ */
 
 export default function useStateArray(initialValue) {
   const setInitial = useCallback(() => {
@@ -38,17 +45,36 @@ export default function useStateArray(initialValue) {
     return item
   }, [state])
 
+  const unshift = useCallback(
+    (value) => {
+      const copy = state
+      const item = copy.unshift(value)
+      setState(copy)
+      return item
+    },
+    [state]
+  )
+
   const replace = useCallback((value) => {
-    if (value === undefined || !Array.isArray(value)) {
-      setState(null)
+    if (!value || !Array.isArray(value)) {
+      setState([])
       return
     }
     setState(value)
   }, [])
 
-  const getLast = useCallback(() => state[state.length - 1], [state])
+  const clear = useCallback(() => {
+    replace(null)
+  })
 
-  const getFirst = useCallback(() => state[0], [state])
+  const last = useCallback(() => state[state.length - 1], [state])
 
-  return [state, { push, pop, shift, getLast, replace, getFirst }]
+  const first = useCallback(() => state[0], [state])
+
+  const handlers = useCallback(
+    () => ({ push, pop, shift, unshift, replace, last, first, clear }),
+    [push, pop, shift, unshift, replace, last, first, clear]
+  )
+
+  return [state, handlers]
 }
