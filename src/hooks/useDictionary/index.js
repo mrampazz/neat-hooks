@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
 /**
  * useDictionary
@@ -8,8 +8,10 @@ import { useCallback, useState } from 'react'
  * @returns
  */
 
-export default function useDictionary() {
-  const [dictionary, setDictionary] = useState({})
+export default function useDictionary(initialState) {
+  const [dictionary, setDictionary] = useState(
+    typeof initialState == 'object' ? initialState : {}
+  )
 
   const keys = useCallback(() => Object.keys(dictionary), [dictionary])
 
@@ -60,10 +62,5 @@ export default function useDictionary() {
 
   const size = useCallback(() => keys().length, [keys])
 
-  const handlers = useCallback(
-    () => ({ set, unset, update, get, has, size, keys, values }),
-    [set, unset, update, get, has, size, keys, values]
-  )
-
-  return [dictionary, handlers]
+  return [dictionary, { set, unset, update, get, has, size, keys, values }]
 }

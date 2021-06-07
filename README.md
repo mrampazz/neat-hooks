@@ -72,6 +72,8 @@ Available handlers:
 - `setState(value: Any?, delay: Number = 0) => Void`
   - _sets a new state value with an added delay in ms_
 
+[Go to code](src/hooks/useStateWithDelay)
+
 ### useDictionary
 
 Hook that treats state as a [key, value] map
@@ -99,6 +101,8 @@ Available handlers:
 - `values() => Array<Any>`
   - _returns the values of the dictionary_
 
+[Go to code](src/hooks/useDictionary)
+
 ### useVersionedState
 
 Hook that creates an history of all state changes saved by hash code
@@ -120,6 +124,8 @@ Available handlers:
 - `getHashList() => Array<String>`
   - _returns list of all hash codes_
 
+[Go to code](src/hooks/useVersionedState)
+
 ## User Interface Hooks
 
 Set of hooks to aid in user interface related problems and possible hiccups.
@@ -132,6 +138,8 @@ Hook that returns the value of `getBoundingClientRect` on the element that has t
 function useBoundingClientRect() : [boundingClientRect: Object, ref: React.MutableRefObject]
 ```
 
+[Go to code](src/hooks/useBoundingClientRect)
+
 ### useScroll
 
 Hook that returns values for scrollLeft and scrollTop of the element with given ref
@@ -140,6 +148,8 @@ Hook that returns values for scrollLeft and scrollTop of the element with given 
 function useScroll(ref: React.MutableRefObject) : Object<x: Number, y: Number>
 ```
 
+[Go to code](src/hooks/useScroll)
+
 ### useSyncScroll
 
 Hook that syncs scroll between container and target, uses `useScroll`, returns ref to target element
@@ -147,3 +157,5 @@ Hook that syncs scroll between container and target, uses `useScroll`, returns r
 ```js
 function useSyncScroll(ref: React.MutableRefObject, axis: String = null) : React.MutableRefObject
 ```
+
+[Go to code](src/hooks/useSyncScroll)
