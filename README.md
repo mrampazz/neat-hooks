@@ -77,16 +77,18 @@ function useDictionary() : [lastEntry: Any?, dictionary: Object<[Key, Value]>, h
 
 Available handlers:
 
-- `get(key: String) => Any?`
-  - _returns `item.value` if it exists in dictionary_
 - `set(key: String, value: Any?) => Void`
   - _sets `item` if it doesn't exists in dictionary else it calls `update`_
 - `unset(key: String) => Void`
   - _removes `item` with given `key` if it exists_
 - `update(key: String, value: Any?) => Void`
   - _updates `item` if it exists with given `key` with given `value`_
-- `updateCurrent(key: String) => Void`
-  - _updates current pointer to `item` with given `key`_
+- `get(key: String) => Any?`
+  - _returns `item.value` if it exists in dictionary_
+- `has(key: String) => Boolean`
+  - _returns `true` if key is in dictionary_
+- `size() => Number`
+  - _returns the size of the dictionary_
 
 ## User Interface Hooks
 
