@@ -4,75 +4,50 @@ import useStateArray from '../useStateArray/useStateArray'
 /**
  * useDictionary
  *
- * custom hook that treats state as a [key, value] map
- * methods:
- *  - get
- *  - set
- *  - update
- *  - unset
- *  - getDictionary
+ * Hook that handles a simple useState as a [key, value] map
  *
  * @returns
  */
 
 export default function useDictionary() {
   const [dictionary, setDictionary] = useState({})
-  const [lastEntry, setLastEntry] = useState(null)
-  const [keys, { last, setState }] = useStateArray([])
 
-  useEffect(() => {
-    setState(Object.keys(dictionary))
-  }, [dictionary])
-
-  const isKeyInDictionary = useCallback(
+  const has = useCallback(
     (key) => Object.keys(dictionary).includes(key),
     [dictionary]
   )
 
   const get = useCallback(
     (key) => {
-      if (!key || !isKeyInDictionary(key)) return
+      if (!key || !has(key)) return
       if (Array.isArray(key)) {
         return key.map((it) => dictionary[it])
       }
       return dictionary[key]
     },
-    [dictionary, isKeyInDictionary]
+    [dictionary, has]
   )
 
   const set = useCallback(
     (key, value) => {
-      if (isKeyInDictionary(key)) {
+      if (has(key)) {
         update(key, value)
-        updateCurrent(key)
         return
       }
       setDictionary({ ...dictionary, [key]: value })
-      setLastEntry({ key: key, value: value })
     },
-    [dictionary, update, updateCurrent, isKeyInDictionary]
-  )
-
-  const updateCurrent = useCallback(
-    (key) => {
-      if (!isKeyInDictionary(key)) return
-      setLastEntry({ key: key, value: get(key) })
-    },
-    [get, isKeyInDictionary]
+    [dictionary, update, has]
   )
 
   const unset = useCallback(
     (key) => {
-      if (!isKeyInDictionary(key)) return
+      if (!has(key)) return
       const newObj = { ...dictionary }
       if (!delete newObj[key]) return
       delete newObj[key]
       setDictionary(newObj)
-      if (key === lastEntry.key) {
-        updateCurrent(last)
-      }
     },
-    [dictionary, last, isKeyInDictionary, updateCurrent]
+    [dictionary, has]
   )
 
   const update = useCallback(
@@ -80,5 +55,7 @@ export default function useDictionary() {
     [dictionary]
   )
 
-  return [lastEntry, dictionary, { get, set, unset, update, updateCurrent }]
+  const size = useCallback(() => Object.keys(dictionary).length, [dictionary])
+
+  return [dictionary, { set, unset, update, get, has, size }]
 }
