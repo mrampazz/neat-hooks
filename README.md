@@ -2,17 +2,16 @@
 
 `neat-hooks` is a lightweight package that contains a few hooks that I find very useful to have in my projects. Some of these will be useful throughout your whole project, others are more niche.
 
-- [neat-hooks](#neat-hooks)
-  - [Installation](#installation)
-  - [State Hooks](#state-hooks)
-    - [useStateArray](#usestatearray)
-    - [useStateWithDelay](#usestatewithdelay)
-    - [useDictionary](#usedictionary)
-    - [useVersionedState](#useversionedstate)
-  - [User Interface Hooks](#user-interface-hooks)
-    - [useBoundingClientRect](#useboundingclientrect)
-    - [useScroll](#usescroll)
-    - [useSyncScroll](#usesyncscroll)
+- [Installation](#installation)
+- [State Hooks](#state-hooks)
+  - [useStateArray](#usestatearray)
+  - [useStateWithDelay](#usestatewithdelay)
+  - [useDictionary](#usedictionary)
+  - [useVersionedState](#useversionedstate)
+- [User Interface Hooks](#user-interface-hooks)
+  - [useBoundingClientRect](#useboundingclientrect)
+  - [useScroll](#usescroll)
+  - [useSyncScroll](#usesyncscroll)
 
 ## Installation
 
